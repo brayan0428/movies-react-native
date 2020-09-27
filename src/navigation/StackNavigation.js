@@ -39,6 +39,7 @@ export default function StackNavigation({navigation}) {
           title: '',
           headerLeft: () => headerLeft('movie'),
           headerRight,
+          headerTransparent:true
         }}
       />
       <Stack.Screen

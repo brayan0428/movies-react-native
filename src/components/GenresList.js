@@ -27,7 +27,7 @@ export default function GenresList({navigation}) {
         {genresList.map((g) => (
           <Text
             key={g.id}
-            style={[styles.genre, { color: g.id !== genreSelected ? '#8697a5' : '#fff' }]}
+            style={[styles.genre, { opacity: g.id !== genreSelected ? 0.4 : 1 }]}
             onPress={() => setGenreSelected(g.id)}>
             {g.name}
           </Text>

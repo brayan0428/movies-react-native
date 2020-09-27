@@ -31,3 +31,19 @@ export const getMoviesByGenreApi = (idGenres) => {
   .then((response) => response.json())
   .then((data) => data);
 }
+
+export const getMoviesByIdApi = (id) => {
+  const url = `${API_URL}/movie/${id}?api_key=${API_KEY}&language=${LANG}`;
+
+  return fetch(url)
+  .then((response) => response.json())
+  .then((data) => data);
+}
+
+export const getMoviesVideoApi = (id) => {
+  const url = `${API_URL}/movie/${id}/videos?api_key=${API_KEY}&language=${LANG}`;
+
+  return fetch(url)
+  .then((response) => response.json())
+  .then((data) => data);
+}
