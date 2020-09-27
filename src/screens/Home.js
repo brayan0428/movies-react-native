@@ -3,6 +3,7 @@ import { StyleSheet, Text, ScrollView, View } from 'react-native'
 import { Title } from 'react-native-paper'
 import { getNewMoviesApi } from '../api/movies'
 import CarouselVertical from '../components/CarouselVertical'
+import GenresList from '../components/GenresList'
 
 export default function Home({navigation}) {
     const [newMovies, setNewMovies] = useState([])
@@ -21,6 +22,7 @@ export default function Home({navigation}) {
                     </View>
                 )
             }
+            <GenresList navigation={navigation}/>
         </ScrollView>
     )
 }
