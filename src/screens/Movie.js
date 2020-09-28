@@ -4,6 +4,11 @@ import {IconButton, Title, Text} from 'react-native-paper';
 import {getMoviesByIdApi} from '../api/movies';
 import ModalVideo from '../components/ModalVideo';
 import {BASE_PATH_IMG} from '../utils/constants';
+import startDark from '../assets/img/starDark.png'
+import startLight from '../assets/img/starLight.png'
+// import { Rating } from 'react-native-ratings';
+import useTheme from '../hooks/useTheme';
+import { Rating } from 'react-native-ratings';
 
 export default function Movie({route}) {
   const [movie, setMovie] = useState(null);
@@ -18,10 +23,13 @@ export default function Movie({route}) {
 
   return (
     <>
-      <ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <MovieImage posterPath={movie.poster_path} />
         <MovieTrailer setShow={setShowVideo}/>
         <MovieTitle {...movie}/>
+        <MovieRatings voteAverage={movie.vote_average} voteCount={movie.vote_count} />
+        <Text style={styles.overview}>{movie.overview}</Text>
+        <Text style={[styles.overview, {marginBottom: 30}]}>Fecha de lanzamiento: {movie.release_date}</Text>
       </ScrollView>
       <ModalVideo show={showVideo} setShow={setShowVideo} idVideo={id}/>
     </>
@@ -53,7 +61,6 @@ function MovieImage({posterPath}) {
 }
 
 function MovieTitle({title, genres}){
-    console.log(genres)
     return (
         <View style={styles.titleContainer}>
             <Title style={styles.titleText}>{title}</Title>
@@ -64,6 +71,26 @@ function MovieTitle({title, genres}){
             </View>
         </View>
     )
+}
+
+function MovieRatings ({voteAverage, voteCount})  {
+  const media = voteAverage / 2
+  const { darkTheme } = useTheme()
+  return (
+    <View style={styles.containerRaiting}> 
+      <Rating
+        type="custom"
+        ratingImage={darkTheme ? startDark : startLight}
+        ratingColor="yellow"
+        ratingBackgroundColor={darkTheme ? "#192734" : "#f0f0f0"}
+        startingValue={media}
+        imageSize={20}
+        style={{ marginRight: 15 }}
+      />
+      <Text style={{ fontSize: 16, marginRight: 5 }}>{media}</Text>
+      <Text style={{ fontSize: 12, color: '#8697a5', marginLeft : 15 }}>{voteCount} votos</Text>
+    </View>
+  )
 }
 
 const styles = StyleSheet.create({
@@ -106,5 +133,16 @@ const styles = StyleSheet.create({
   },
   genreText: {
       marginRight: 10
+  },
+  containerRaiting: {
+    paddingHorizontal: 25,
+    flexDirection: "row",
+    alignItems: "center",
+    marginTop : 10
+  },
+  overview: {
+    marginHorizontal: 25,
+    marginVertical: 10,
+    textAlign: "justify"
   }
 });
