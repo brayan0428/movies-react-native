@@ -47,3 +47,11 @@ export const getMoviesVideoApi = (id) => {
   .then((response) => response.json())
   .then((data) => data);
 }
+
+export const getPopularMovies = (page = 1) => {
+  const url = `${API_URL}/movie/popular?api_key=${API_KEY}&language=${LANG}&page=${page}`;
+
+  return fetch(url)
+  .then((response) => response.json())
+  .then((data) => data);
+}

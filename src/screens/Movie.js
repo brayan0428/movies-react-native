@@ -6,7 +6,6 @@ import ModalVideo from '../components/ModalVideo';
 import {BASE_PATH_IMG} from '../utils/constants';
 import startDark from '../assets/img/starDark.png'
 import startLight from '../assets/img/starLight.png'
-// import { Rating } from 'react-native-ratings';
 import useTheme from '../hooks/useTheme';
 import { Rating } from 'react-native-ratings';
 
@@ -79,6 +78,7 @@ function MovieRatings ({voteAverage, voteCount})  {
   return (
     <View style={styles.containerRaiting}> 
       <Rating
+        readonly={true}
         type="custom"
         ratingImage={darkTheme ? startDark : startLight}
         ratingColor="yellow"
