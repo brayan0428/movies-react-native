@@ -63,7 +63,7 @@ export default function StackNavigation({navigation}) {
       <Stack.Screen
         name="Search"
         component={Search}
-        options={{title: '', headerLeft: () => headerLeft('search')}}
+        options={{title: '',headerTransparent:true, headerLeft: () => headerLeft('search')}}
       />
     </Stack.Navigator>
   );

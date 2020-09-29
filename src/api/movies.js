@@ -55,3 +55,11 @@ export const getPopularMovies = (page = 1) => {
   .then((response) => response.json())
   .then((data) => data);
 }
+
+export const getSearchMovies = (query) => {
+  const url = `${API_URL}/search/movie?api_key=${API_KEY}&language=${LANG}&query=${query}`;
+
+  return fetch(url)
+  .then((response) => response.json())
+  .then((data) => data);
+}

@@ -38,13 +38,15 @@ export default function Popular({navigation}) {
         <Movie key={index} movie={m} navigation={navigation} />
       ))}
       {showBtn && (
-        <Button
-          mode="contained"
-          style={styles.btnLoad}
-          onPress={() => setPage(page + 1)}
-          labelStyle={{color: darkTheme ? '#fff' : '#000'}}>
-          Cargar más...
-        </Button>
+         <View style={styles.containerBtn}>
+         <Button
+           mode="text"
+           style={styles.btnLoad}
+           onPress={() => setPage(page + 1)}
+           labelStyle="#fff">
+           Cargar más...
+         </Button>
+       </View>
       )}
     </ScrollView>
   );
@@ -128,8 +130,15 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     justifyContent: 'flex-start',
   },
+  containerBtn: {
+    flexDirection: "row",
+    flex: 1,
+    justifyContent: "center"
+  },
   btnLoad: {
+    width: 150,
     marginVertical: 15,
-    backgroundColor: 'transparent',
+    backgroundColor: '#262B47',
+    borderRadius: 20
   },
 });

@@ -9,7 +9,6 @@ import {
 } from 'react-native';
 import {Text, Button} from 'react-native-paper';
 import {getNewMoviesApi} from '../api/movies';
-import useTheme from '../hooks/useTheme';
 import {BASE_PATH_IMG} from '../utils/constants';
 
 const {width} = Dimensions.get('window');
@@ -18,7 +17,6 @@ export default function News({navigation}) {
   const [movies, setMovies] = useState([]);
   const [page, setPage] = useState(1);
   const [showBtn, setShowBtn] = useState(true);
-  const {darkTheme} = useTheme();
 
   useEffect(() => {
     getNewMoviesApi(page).then((response) => {
@@ -39,13 +37,15 @@ export default function News({navigation}) {
         ))}
       </View>
       {showBtn && (
-        <Button
-          mode="contained"
-          style={styles.btnLoad}
-          onPress={() => setPage(page + 1)}
-          labelStyle={{color: darkTheme ? '#fff' : '#000'}}>
-          Cargar más...
-        </Button>
+        <View style={styles.containerBtn}>
+          <Button
+            mode="text"
+            style={styles.btnLoad}
+            onPress={() => setPage(page + 1)}
+            labelStyle="#fff">
+            Cargar más...
+          </Button>
+        </View>
       )}
     </ScrollView>
   );
@@ -90,8 +90,15 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
   },
+  containerBtn: {
+    flexDirection: "row",
+    flex: 1,
+    justifyContent: "center"
+  },
   btnLoad: {
+    width: 150,
     marginVertical: 15,
-    backgroundColor: 'transparent',
+    backgroundColor: '#262B47',
+    borderRadius: 20
   },
 });
